@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Message",
-    "description": "Message service",
+    "description": "Message service ",
     "termsOfService": "",
     "contact": {
       "email": "solutions@spicemoney.com"
@@ -11,15 +11,15 @@
       "name": "",
       "url": ""
     },
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "servers": [
     {
-      "description": "SwaggerHub API Auto Mocking",
-      "url": "https://stgmyapp.spicemoney.com/auth/"
+      "description": "Added broadcast funtionality to message service",
+      "url": "https://stgmyapp.spicemoney.com/message/ws"
     },
     {
-      "url": "https://myapp.spicemoney.com/auth/"
+      "url": "https://myapp.spicemoney.com/message/ws"
     }
   ],
   "paths": {
