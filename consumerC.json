@@ -1,0 +1,2216 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ConsumerAPP",
+    "description": "Consumer APP API Definations",
+    "termsOfService": "",
+    "contact": {
+      "email": "solutions@spicemoney.com"
+    },
+    "license": {
+      "name": "",
+      "url": ""
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://virtserver.swaggerhub.com/AshishSharma1990/ConsumerAPP/1.0.0"
+    },
+    {
+      "url": "ws/v1"
+    }
+  ],
+  "paths": {
+    "/preLogin": {
+      "get": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Get Prelogin Data.",
+        "operationId": "getPreLoginData",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/deviceId"
+          },
+          {
+            "$ref": "#/components/parameters/imei"
+          },
+          {
+            "$ref": "#/components/parameters/appVer"
+          },
+          {
+            "$ref": "#/components/parameters/celId"
+          },
+          {
+            "$ref": "#/components/parameters/email"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/handsetMake"
+          },
+          {
+            "$ref": "#/components/parameters/handsetModel"
+          },
+          {
+            "$ref": "#/components/parameters/internetType"
+          },
+          {
+            "$ref": "#/components/parameters/isMobileApp"
+          },
+          {
+            "$ref": "#/components/parameters/lac"
+          },
+          {
+            "$ref": "#/components/parameters/mcc"
+          },
+          {
+            "$ref": "#/components/parameters/mnc"
+          },
+          {
+            "$ref": "#/components/parameters/mobileNo"
+          },
+          {
+            "$ref": "#/components/parameters/mobileOS"
+          },
+          {
+            "$ref": "#/components/parameters/mobileOperator"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/userAgent"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreloginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_400"
+          }
+        }
+      }
+    },
+    "/bankList": {
+      "get": {
+        "tags": [
+          "Check Balance"
+        ],
+        "summary": "Get Bank List",
+        "operationId": "getBankList",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "bankNote": {
+                      "type": "string",
+                      "example": "Lorem ipsum, or lipsum "
+                    },
+                    "bankSmsWaitTime": {
+                      "description": "in seconds",
+                      "type": "number",
+                      "example": 120
+                    },
+                    "bankList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BankDetails"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/isOpenToday": {
+      "get": {
+        "tags": [
+          "Check Balance"
+        ],
+        "summary": "Check Bank Open Today",
+        "operationId": "isOpenToday",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "in": "query",
+            "name": "bankId",
+            "description": "Bank Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stateCode",
+            "description": "stateCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "isOpen": {
+                      "type": "boolean"
+                    },
+                    "remarks": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/pushSms": {
+      "post": {
+        "tags": [
+          "Check Balance"
+        ],
+        "summary": "push SMS",
+        "operationId": "pushSMS",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SmsDetails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/feedbackList": {
+      "get": {
+        "tags": [
+          "feedback"
+        ],
+        "summary": "Get feedBack",
+        "operationId": "getFeedback",
+        "description": "Get Feedback list to be cached",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFeedback"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "summary": "Fetch posts for the user",
+        "operationId": "getPosts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/recordNo"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "description": "liked , saved , shared",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/postResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/post/{postId}": {
+      "post": {
+        "tags": [
+          "Feed"
+        ],
+        "summary": "Update likes, shares and views",
+        "operationId": "putPost",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/postId"
+          },
+          {
+            "in": "query",
+            "name": "opr",
+            "description": "operation [SAVE, VIEW, SHARE]",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "LIKE"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "summary": "Get post details",
+        "operationId": "getPostDetails",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/postId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Get post details",
+        "operationId": "getJobs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/recordNo"
+          },
+          {
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "t=delhi|UP,2=<10"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/filters/{cat}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Get post details",
+        "operationId": "getFilters",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "in": "path",
+            "name": "cat",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "job/scheme"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Filters"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/job/{id}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Get post details",
+        "operationId": "getJobDetails",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/wordOfDay": {
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "summary": "Get Word Of the day",
+        "operationId": "getWod",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/postId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WordOfTheDay"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/schemes": {
+      "get": {
+        "tags": [
+          "Schemes"
+        ],
+        "summary": "Get Scheme Details",
+        "operationId": "getSchemes",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "$ref": "#/components/parameters/recordNo"
+          },
+          {
+            "$ref": "#/components/parameters/filters"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/schemeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/schemes/{id}": {
+      "get": {
+        "tags": [
+          "Schemes"
+        ],
+        "summary": "Get scheme details",
+        "operationId": "getSchemeDetails",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/reqMedium"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/broadcast/config/{busnessType}": {
+      "get": {
+        "tags": [
+          "brodcast"
+        ],
+        "summary": "gets config for brodcast messages",
+        "operationId": "getBroadcastConfig",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "in": "path",
+            "name": "busnessType",
+            "description": "busnessType default is default",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adds"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "headers": {
+      "rToken": {
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        }
+      },
+      "token": {
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        }
+      }
+    },
+    "parameters": {
+      "rToken": {
+        "in": "header",
+        "name": "r-token",
+        "description": "rToken",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "token": {
+        "in": "header",
+        "name": "token",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "uniqueId": {
+        "in": "header",
+        "name": "uniqueId",
+        "description": "its combination of <userId><millies><2digitrandom>",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "deviceId": {
+        "in": "header",
+        "name": "deviceId",
+        "description": "deviceId",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "imei": {
+        "in": "header",
+        "name": "imei",
+        "description": "imei number",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "handsetMake": {
+        "in": "header",
+        "name": "handsetMake",
+        "description": "handsetMake",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "handsetModel": {
+        "in": "header",
+        "name": "handsetModel",
+        "description": "handsetModel",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileOS": {
+        "in": "header",
+        "name": "mobileOS",
+        "description": "mobileOS",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "email": {
+        "in": "header",
+        "name": "email",
+        "description": "Email in Phone",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mnc": {
+        "in": "header",
+        "name": "appVer",
+        "description": "appVer",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mcc": {
+        "in": "header",
+        "name": "mcc",
+        "description": "mcc",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "lac": {
+        "in": "header",
+        "name": "lac",
+        "description": "lac",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "isMobileApp": {
+        "in": "header",
+        "name": "isMobileApp",
+        "description": "isMobileApp",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "celId": {
+        "in": "header",
+        "name": "celId",
+        "description": "celId",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "appVer": {
+        "in": "header",
+        "name": "appVer",
+        "description": "appVer",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "userAgent": {
+        "in": "header",
+        "name": "userAgent",
+        "description": "userAgent",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "bcAgentId": {
+        "in": "header",
+        "name": "clientId",
+        "description": "clientId",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileNo": {
+        "in": "header",
+        "name": "mobileNo",
+        "description": "mobileNo",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoCode": {
+        "in": "header",
+        "name": "geoCode",
+        "description": "geoCode",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileOperator": {
+        "in": "header",
+        "name": "mobileOperator",
+        "description": "mobileOperator",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "internetType": {
+        "in": "header",
+        "name": "internetType",
+        "description": "internetType",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "reqMedium": {
+        "in": "header",
+        "name": "reqMedium",
+        "description": "reqMedium will contain for app version and for web browser name and version will be send",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoAcc": {
+        "in": "header",
+        "name": "token",
+        "description": "token",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "lang": {
+        "in": "header",
+        "name": "lang",
+        "description": "language",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "cuid": {
+        "in": "header",
+        "name": "cuId",
+        "description": "unique Customer ID",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "utmSource": {
+        "in": "header",
+        "name": "utmSource",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "utmMedium": {
+        "in": "header",
+        "name": "utmMedium",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoAccuracy": {
+        "in": "header",
+        "name": "geoAccuracy",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "postId": {
+        "in": "path",
+        "name": "postId",
+        "description": "Unique Identifier for the post",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "stateCode": {
+        "in": "query",
+        "name": "stateCode",
+        "description": "State code selected",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "recordNo": {
+        "in": "query",
+        "name": "recordNo",
+        "description": "recordNo",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "filters": {
+        "in": "query",
+        "name": "filters",
+        "description": "Filters sent piper seperated",
+        "example": "t=delhi|UP,2=<10",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "9283"
+          },
+          "errorMsg": {
+            "type": "string",
+            "example": "An error has occured while processing your request"
+          }
+        }
+      },
+      "PreloginResponse": {
+        "type": "object",
+        "properties": {
+          "otpScreen": {
+            "$ref": "#/components/schemas/preLoginOtpScreen"
+          },
+          "preLoginScreen": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreLoginScreen"
+            }
+          }
+        }
+      },
+      "PreLoginScreen": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "अपने मोबाइल से अपने बैंकबेलेंस को जानें"
+          },
+          "desc": {
+            "type": "string",
+            "example": "कहीं भी कभी भी अपने मोबाइल से अपने बैंक बैलेंस को जानें"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "https://icon.url"
+          }
+        }
+      },
+      "preLoginOtpScreen": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Please enter your mobile number"
+          },
+          "subtitle": {
+            "type": "string",
+            "example": "transaction details and many other updates"
+          }
+        }
+      },
+      "BankDetails": {
+        "type": "object",
+        "properties": {
+          "bankId": {
+            "type": "string",
+            "example": "213"
+          },
+          "name": {
+            "type": "string",
+            "example": "State Bank of India"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "https://sbi.png"
+          },
+          "bankCode": {
+            "type": "string",
+            "example": "SBI"
+          },
+          "ccNumber": {
+            "type": "string",
+            "example": "1800-232-2323"
+          },
+          "balCheckNumber": {
+            "type": "string",
+            "example": "1800-232-2323"
+          },
+          "isPopular": {
+            "type": "boolean",
+            "example": true
+          },
+          "bankSeedingInfo": {
+            "type": "string",
+            "example": "Bank Seeding Info In HTML"
+          },
+          "templates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "templateId": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "displayMessage": {
+        "type": "object",
+        "properties": {
+          "displayMsg": {
+            "type": "string",
+            "example": "Your profile has been sucesssfully updated"
+          }
+        }
+      },
+      "postResponse": {
+        "type": "object",
+        "properties": {
+          "eof": {
+            "type": "boolean"
+          },
+          "postDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Post"
+            }
+          }
+        }
+      },
+      "Post": {
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "string",
+            "description": "Unique identifier for each Post in the feed",
+            "example": "12345433"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category defined for the post",
+            "example": "JOB/SCHEMES/POST"
+          },
+          "short_desc": {
+            "type": "string",
+            "description": "Short desciption to be displayed on listed posts",
+            "example": "UP Police 150 posts out now. Last date to apply is 15th July."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the post. Can be image/VIDEO/TEXT/IMAGE",
+            "example": "IMAGE"
+          },
+          "media_link": {
+            "type": "string",
+            "description": "Link to image or video if post type is image/video",
+            "example": "https://youtu.be/-Nojk3zPHdM"
+          },
+          "saved": {
+            "type": "boolean",
+            "description": "Indicates whether user has saved the post or not",
+            "example": false
+          },
+          "views": {
+            "type": "integer",
+            "format": "int64",
+            "example": 45
+          },
+          "date": {
+            "type": "string",
+            "description": "creation date for the post",
+            "format": "date-time"
+          }
+        }
+      },
+      "JobsResponse": {
+        "type": "object",
+        "properties": {
+          "eof": {
+            "type": "boolean"
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSummary"
+            }
+          }
+        }
+      },
+      "Filters": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "example": 122131
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "display": {
+                  "type": "string",
+                  "example": "state"
+                },
+                "key": {
+                  "type": "string",
+                  "example": "s"
+                },
+                "filterVal": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "example": "hp"
+                      },
+                      "valueDisplay": {
+                        "type": "string",
+                        "example": "Himachal"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "buttton": {
+            "$ref": "#/components/schemas/Buttton"
+          },
+          "jobDescription": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "desciption": {
+                  "type": "object",
+                  "properties": {
+                    "tabTitle": {
+                      "type": "string"
+                    },
+                    "html": {
+                      "type": "string",
+                      "example": "<html></HTML>"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ServiceList": {
+        "type": "object",
+        "properties": {
+          "sid": {
+            "type": "string",
+            "example": "MTXN"
+          },
+          "sName": {
+            "type": "string",
+            "example": "My Transactions"
+          },
+          "visibility": {
+            "type": "boolean"
+          },
+          "accesibility": {
+            "type": "boolean"
+          },
+          "errorMsg": {
+            "type": "string",
+            "example": "Coming Soon"
+          }
+        }
+      },
+      "JobSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "JOB21"
+          },
+          "expiry": {
+            "type": "string",
+            "format": "date"
+          },
+          "title": {
+            "type": "string",
+            "example": "Assistant Clerk Posts"
+          },
+          "subTitle": {
+            "type": "string",
+            "example": "State Bank of India"
+          },
+          "totalVacancies": {
+            "type": "number",
+            "example": 10
+          },
+          "criteria": {
+            "type": "string",
+            "example": "12 Pass or below , Must be a resident of Bihar"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "https:google.com"
+          },
+          "mediatype": {
+            "type": "string",
+            "example": "IMAGE",
+            "enum": [
+              "IMAGE",
+              "VIDEO"
+            ]
+          },
+          "mediaLink": {
+            "type": "string",
+            "example": "https://google.com"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2 Days ago"
+          }
+        }
+      },
+      "schemeResponse": {
+        "type": "object",
+        "properties": {
+          "eof": {
+            "type": "boolean"
+          },
+          "schemes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/schemeSummary"
+            }
+          }
+        }
+      },
+      "schemeSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "SCH1"
+          },
+          "title": {
+            "type": "string",
+            "example": "Pradhan Mantri Gram sadak yojana"
+          },
+          "subTitle": {
+            "type": "string",
+            "example": "Yojna Ka naam"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "https:google.com"
+          },
+          "criteria": {
+            "type": "string",
+            "example": "12 Pass or below , Must be a resident of Bihar"
+          },
+          "description": {
+            "type": "string",
+            "example": "12 Pass or below , Must be a resident of Bihar"
+          },
+          "mediatype": {
+            "type": "string",
+            "example": "IMAGE",
+            "enum": [
+              "IMAGE",
+              "VIDEO"
+            ]
+          },
+          "mediaLink": {
+            "type": "string",
+            "example": "https://google.com"
+          },
+          "creationDate": {
+            "type": "string",
+            "example": "2 Days ago"
+          }
+        }
+      },
+      "Buttton": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "example": "webview"
+          },
+          "knowMoreEnabled": {
+            "type": "boolean"
+          },
+          "knowMoreText": {
+            "type": "string",
+            "example": "Know more"
+          },
+          "knowMoreLink": {
+            "type": "string",
+            "example": "https://google.com"
+          }
+        }
+      },
+      "PostDetails": {
+        "type": "object",
+        "properties": {
+          "post": {
+            "$ref": "#/components/schemas/Post"
+          },
+          "details": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Text body for the section",
+                "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel arcu eu sapien pellentesque molestie. Donec in feugiat lacus, eleifend varius dolor."
+              },
+              "knowMoreText": {
+                "type": "string",
+                "example": "Know more"
+              },
+              "knowMoreFlag": {
+                "type": "boolean",
+                "description": "Button to be showed or not"
+              },
+              "btn_link": {
+                "type": "string",
+                "description": "URL for the external website",
+                "example": "http://example.com"
+              }
+            }
+          }
+        }
+      },
+      "SmsDetails": {
+        "type": "object",
+        "properties": {
+          "bankId": {
+            "type": "string",
+            "example": "100",
+            "description": "BankId received in  Bank List API"
+          },
+          "accNo": {
+            "type": "string",
+            "example": "xxxx34534"
+          },
+          "accbal": {
+            "type": "string",
+            "example": "9898.00"
+          },
+          "smstext": {
+            "type": "string",
+            "example": "Your Balance for Account No xxxx34534 is Rs 9898.00"
+          },
+          "wasParsed": {
+            "type": "boolean",
+            "description": "true if Parsed, false if not parsed."
+          }
+        }
+      },
+      "AccountDetails": {
+        "type": "object",
+        "properties": {
+          "accId": {
+            "type": "string",
+            "description": "Unique identifier for the bank",
+            "example": "215324"
+          },
+          "bankId": {
+            "type": "string",
+            "description": "Unique bank ID",
+            "example": "215324"
+          },
+          "accNo": {
+            "type": "string",
+            "description": "Account Number",
+            "example": "215324"
+          }
+        }
+      },
+      "BalanceLedger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier",
+            "example": "215324"
+          },
+          "date": {
+            "type": "string",
+            "description": "date",
+            "format": "date"
+          },
+          "accBal": {
+            "type": "string",
+            "description": "Balance in Account",
+            "example": "Rs. 215324"
+          }
+        }
+      },
+      "GetFeedback": {
+        "type": "object",
+        "properties": {
+          "feedbackVer": {
+            "type": "number",
+            "example": 2
+          },
+          "feedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feedback"
+            }
+          }
+        }
+      },
+      "WordOfTheDay": {
+        "type": "object",
+        "properties": {
+          "w": {
+            "type": "string",
+            "example": "Mandatory"
+          },
+          "desc": {
+            "type": "string",
+            "example": "has to be delivered"
+          }
+        }
+      },
+      "Feedback": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123",
+            "description": "unique Feedback Id"
+          },
+          "feedbackDesc": {
+            "type": "string",
+            "example": "I was unable to check balance"
+          }
+        }
+      },
+      "appVer": {
+        "type": "object",
+        "properties": {
+          "appVer": {
+            "type": "number",
+            "example": 12,
+            "description": "Latest App version"
+          },
+          "updText": {
+            "type": "string",
+            "example": "New Version is avalaible",
+            "description": "text for update version"
+          },
+          "skipFlag": {
+            "type": "boolean",
+            "description": "App to be updated or not"
+          },
+          "rdrTo": {
+            "type": "string",
+            "example": "GOOGLEPLAY",
+            "description": "Where will the update will route",
+            "enum": [
+              "GOOGLEPLAY",
+              "WEBBROWSER"
+            ]
+          },
+          "rdrUrl": {
+            "type": "string",
+            "example": "https:google.com"
+          }
+        }
+      },
+      "states": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "HP"
+          },
+          "name": {
+            "type": "string",
+            "example": "Himachal Pradesh"
+          }
+        }
+      },
+      "operators": {
+        "type": "object",
+        "properties": {
+          "oprId": {
+            "type": "string",
+            "example": "22"
+          },
+          "oprName": {
+            "type": "string",
+            "example": "Airtel"
+          },
+          "icon": {
+            "type": "string",
+            "example": "https://bbps.spicemoney.com/billerIcon/22.PNG"
+          }
+        }
+      },
+      "staticResponse": {
+        "type": "object",
+        "properties": {
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceList"
+            }
+          },
+          "operators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/operators"
+            }
+          },
+          "appVerDtls": {
+            "$ref": "#/components/schemas/appVer"
+          },
+          "statList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/states"
+            }
+          },
+          "referral": {
+            "$ref": "#/components/schemas/referral"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/keyValues"
+            }
+          },
+          "lastBank": {
+            "type": "object",
+            "properties": {
+              "bankDetail": {
+                "$ref": "#/components/schemas/AccountDetails"
+              },
+              "balance": {
+                "$ref": "#/components/schemas/BalanceLedger"
+              }
+            }
+          }
+        }
+      },
+      "referral": {
+        "type": "object",
+        "properties": {
+          "displayMsg": {
+            "type": "string",
+            "example": "refer the app to and earn"
+          },
+          "link": {
+            "type": "string",
+            "example": "https:googele.com"
+          },
+          "sharetext": {
+            "type": "string",
+            "example": "Share your app <<link>>"
+          }
+        }
+      },
+      "keyValues": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "key"
+          },
+          "value": {
+            "type": "string",
+            "example": "value"
+          }
+        }
+      },
+      "Adds": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string",
+            "example": "V1"
+          },
+          "addsList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddsConfig"
+            }
+          },
+          "channelList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Channel"
+            }
+          }
+        }
+      },
+      "Channel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "SMS"
+          },
+          "name": {
+            "type": "string",
+            "example": "SMS"
+          },
+          "price": {
+            "type": "string",
+            "example": 50
+          }
+        }
+      },
+      "AddsConfig": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "New Product"
+          },
+          "back": {
+            "description": "background Img",
+            "type": "string",
+            "example": "http://test.com/test.jpg"
+          },
+          "message": {
+            "type": "string",
+            "example": "We have added new Product <productName> in our shop <address>"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fields"
+            }
+          }
+        }
+      },
+      "Fields": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "displayVal": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "error_400": {
+        "description": "Business Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_400_with_headers": {
+        "description": "Validation exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_405_with_headers": {
+        "description": "Business Exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_422_with_headers": {
+        "description": "Business Exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_422": {
+        "description": "Unprocessable Entity",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_415_with_headers": {
+        "description": "Unsupported Media Type",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_405": {
+        "description": "Business Exception",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "auth_error": {
+        "description": "Auth error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "200_with_displaymsg": {
+        "description": "successful operation",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/displayMessage"
+            }
+          }
+        }
+      }
+    }
+  }
+}
