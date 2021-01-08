@@ -1,0 +1,1480 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Message",
+    "description": "Message service",
+    "termsOfService": "",
+    "contact": {
+      "email": "solutions@spicemoney.com"
+    },
+    "license": {
+      "name": "",
+      "url": ""
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://stgmyapp.spicemoney.com/auth/"
+    },
+    {
+      "url": "https://myapp.spicemoney.com/auth/"
+    }
+  ],
+  "paths": {
+    "/otp/{module}/{requester}/{mode}": {
+      "post": {
+        "tags": [
+          "OTP"
+        ],
+        "summary": "Request will be made for Getting OTP",
+        "operationId": "otpInitiate",
+        "parameters": [
+          {
+            "name": "requester",
+            "in": "path",
+            "description": "consumer app",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "path",
+            "description": "APP",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "module",
+            "in": "path",
+            "description": "APP",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "requestBody": {
+          "description": "Request will be made for Getting OTP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpInitRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtpInitResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "401": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/otp/Val/{requester}/{mode}": {
+      "post": {
+        "tags": [
+          "OTP"
+        ],
+        "summary": "Request will be made for validating OTP",
+        "operationId": "otpValidate",
+        "parameters": [
+          {
+            "name": "requester",
+            "in": "path",
+            "description": "consumer app",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "path",
+            "description": "APP",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "requestBody": {
+          "description": "Request will be made for Validating OTP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/otpValReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/displayMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "401": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/broadcast/message": {
+      "post": {
+        "tags": [
+          "broadcast"
+        ],
+        "summary": "Submit message for broadcast",
+        "operationId": "broadcastMessage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "requestBody": {
+          "description": "Message udpate request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BoardcastMessageReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "401": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/pricing/message": {
+      "post": {
+        "tags": [
+          "broadcast"
+        ],
+        "summary": "Check pricing for Broadcast for specific channel and user base",
+        "operationId": "pricingBroadCast",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "requestBody": {
+          "description": "Request will be made for Validating OTP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PricingRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PricingRes"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "401": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/broadcast/publish": {
+      "post": {
+        "tags": [
+          "broadcast"
+        ],
+        "summary": "Publish the broadcast",
+        "operationId": "broadcastPublish",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "requestBody": {
+          "description": "Request will be made for Validating OTP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200_with_displaymsg"
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/broadcast/{expiredFlag}/{busnessType}": {
+      "get": {
+        "tags": [
+          "broadcast"
+        ],
+        "summary": "get all customer for services",
+        "operationId": "getUserMessages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          },
+          {
+            "name": "busnessType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expiredFlag",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BoardcastMessage"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/user/cust/cat": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "uder categories by service",
+        "operationId": "getUserForCat",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustCatRes"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/user/cust/cat/{catId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "get all customer for services",
+        "operationId": "getUserForCategory",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "9283"
+          },
+          "errorMsg": {
+            "type": "string",
+            "example": "An error has occured while processing your request"
+          }
+        }
+      },
+      "OtpInitRequest": {
+        "type": "object",
+        "properties": {
+          "custMobile": {
+            "type": "number",
+            "description": "Mobile Number entered by customer",
+            "example": 9898982833
+          },
+          "requestType": {
+            "type": "string",
+            "description": "Possible Values: SEND/RESEND",
+            "example": "SEND",
+            "enum": [
+              "SEND",
+              "RESEND"
+            ]
+          },
+          "otpId": {
+            "type": "string",
+            "description": "To be sent in case of resend",
+            "example": "1231232131"
+          }
+        }
+      },
+      "OtpInitResponse": {
+        "type": "object",
+        "properties": {
+          "otpId": {
+            "type": "string",
+            "description": "Unique OTP Id against which OTP will be validated",
+            "example": "1231232131"
+          },
+          "waitDesc": {
+            "type": "string",
+            "example": "OTP has been sent on 999999999. Please wait while app attempts to detect the incoming OTP."
+          },
+          "waitTime": {
+            "type": "number",
+            "description": "wait time in seconds",
+            "example": 120
+          },
+          "readFlag": {
+            "type": "string",
+            "description": "Possible values A-Auto , M-Manual , B-Both",
+            "example": "B"
+          }
+        }
+      },
+      "otpValReq": {
+        "type": "object",
+        "properties": {
+          "otpId": {
+            "type": "string",
+            "description": "Unique OTP Id against which OTP will be validated",
+            "example": "1231232131"
+          },
+          "otp": {
+            "type": "number",
+            "example": 123456
+          },
+          "custMobile": {
+            "type": "number",
+            "description": "Mobile Number entered by customer",
+            "example": 9898982833
+          }
+        }
+      },
+      "BoardcastMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 123
+          },
+          "castId": {
+            "type": "string",
+            "example": 12
+          },
+          "msg": {
+            "type": "string",
+            "format": "message",
+            "example": "appki dukan pe toster hai on balugunj chowk"
+          },
+          "msgTemplate": {
+            "type": "string",
+            "format": "message",
+            "example": "appki dukan pe <productName> hai on <address>"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BoardcastMessageReq": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 1
+          },
+          "castId": {
+            "type": "string",
+            "example": 12
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CustCatRes": {
+        "type": "object",
+        "properties": {
+          "custCat": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustCat"
+            }
+          }
+        }
+      },
+      "CustCat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "AEPS"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "AEPS customers"
+          },
+          "custCount": {
+            "type": "integer",
+            "example": 240
+          },
+          "userList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "UserListResponse": {
+        "type": "object",
+        "properties": {
+          "userList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12344
+          },
+          "name": {
+            "type": "string",
+            "example": "Bhasker"
+          },
+          "mob": {
+            "type": "integer",
+            "format": "int64",
+            "example": 9999999999
+          }
+        }
+      },
+      "PricingRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 123
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "CUST_APP",
+                "SMS",
+                "WHATSAPP"
+              ]
+            }
+          },
+          "count": {
+            "type": "integer",
+            "example": 120
+          }
+        }
+      },
+      "PricingRes": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 210.12
+          }
+        }
+      },
+      "PublishRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": 123
+          },
+          "broadcastId": {
+            "type": "string",
+            "example": 1231
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "CUST_APP",
+                "SMS",
+                "WHATSAPP"
+              ]
+            }
+          },
+          "service": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Service"
+            }
+          }
+        }
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "AEPS"
+          },
+          "userId": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "example": [
+                -1,
+                1221
+              ]
+            }
+          }
+        }
+      },
+      "displayMessage": {
+        "type": "object",
+        "properties": {
+          "displayMsg": {
+            "type": "string",
+            "example": "Your profile has been sucesssfully updated"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "bcAgentId": {
+        "in": "header",
+        "name": "bcAgentId",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "sdl19586"
+        }
+      },
+      "rToken": {
+        "name": "r-token",
+        "in": "header",
+        "description": "rToken",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "token": {
+        "name": "token",
+        "in": "header",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "uniqueId": {
+        "name": "uniqueId",
+        "in": "header",
+        "description": "its combination of <userId><millies><2digitrandom>",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "deviceId": {
+        "name": "deviceId",
+        "in": "header",
+        "description": "deviceId",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "imei": {
+        "name": "imei",
+        "in": "header",
+        "description": "imei number",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "handsetMake": {
+        "name": "handsetMake",
+        "in": "header",
+        "description": "handsetMake",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "handsetModel": {
+        "name": "handsetModel",
+        "in": "header",
+        "description": "handsetModel",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileOS": {
+        "name": "mobileOS",
+        "in": "header",
+        "description": "mobileOS",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "email": {
+        "name": "email",
+        "in": "header",
+        "description": "Email in Phone",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mnc": {
+        "name": "appVer",
+        "in": "header",
+        "description": "appVer",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mcc": {
+        "name": "mcc",
+        "in": "header",
+        "description": "mcc",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "lac": {
+        "name": "lac",
+        "in": "header",
+        "description": "lac",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "isMobileApp": {
+        "name": "isMobileApp",
+        "in": "header",
+        "description": "isMobileApp",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "celId": {
+        "name": "celId",
+        "in": "header",
+        "description": "celId",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "appVer": {
+        "name": "appVer",
+        "in": "header",
+        "description": "appVer",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "userAgent": {
+        "name": "userAgent",
+        "in": "header",
+        "description": "userAgent",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileNo": {
+        "name": "mobileNo",
+        "in": "header",
+        "description": "mobileNo",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoCode": {
+        "name": "geoCode",
+        "in": "header",
+        "description": "geoCode",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "mobileOperator": {
+        "name": "mobileOperator",
+        "in": "header",
+        "description": "mobileOperator",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "internetType": {
+        "name": "internetType",
+        "in": "header",
+        "description": "internetType",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "reqMedium": {
+        "name": "reqMedium",
+        "in": "header",
+        "description": "reqMedium will contain for app version and for web browser name and version will be send",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoAcc": {
+        "name": "token",
+        "in": "header",
+        "description": "token",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "lang": {
+        "name": "lang",
+        "in": "header",
+        "description": "language",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "cuid": {
+        "name": "cuId",
+        "in": "header",
+        "description": "unique Customer ID",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "utmSource": {
+        "name": "utmSource",
+        "in": "header",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "utmMedium": {
+        "name": "utmMedium",
+        "in": "header",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "geoAccuracy": {
+        "name": "geoAccuracy",
+        "in": "header",
+        "required": false,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "postId": {
+        "name": "postId",
+        "in": "path",
+        "description": "Unique Identifier for the post",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "stateCode": {
+        "name": "stateCode",
+        "in": "query",
+        "description": "State code selected",
+        "required": true,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "recordNo": {
+        "name": "recordNo",
+        "in": "query",
+        "description": "recordNo",
+        "required": true,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      "filters": {
+        "name": "filters",
+        "in": "query",
+        "description": "Filters sent piper seperated",
+        "required": false,
+        "style": "form",
+        "explode": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "t=delhi|UP,2=<10"
+      }
+    },
+    "headers": {
+      "rToken": {
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        }
+      },
+      "token": {
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        }
+      }
+    },
+    "responses": {
+      "error_400": {
+        "description": "Business Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_400_with_headers": {
+        "description": "Validation exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_405_with_headers": {
+        "description": "Business Exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_422_with_headers": {
+        "description": "Business Exception",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_422": {
+        "description": "Unprocessable Entity",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_415_with_headers": {
+        "description": "Unsupported Media Type",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "error_405": {
+        "description": "Business Exception",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "auth_error": {
+        "description": "Auth error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "200_with_displaymsg": {
+        "description": "successful operation",
+        "headers": {
+          "token": {
+            "$ref": "#/components/headers/token"
+          },
+          "r-token": {
+            "$ref": "#/components/headers/rToken"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/displayMessage"
+            }
+          }
+        }
+      }
+    }
+  }
+}
