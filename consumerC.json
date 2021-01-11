@@ -2004,7 +2004,8 @@
         "properties": {
           "v": {
             "type": "string",
-            "example": "V1"
+            "example": "V1",
+            "description": "Version Value for config of broadcast"
           },
           "addsList": {
             "type": "array",
@@ -2025,15 +2026,18 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "SMS"
+            "example": "SMS",
+            "description": "channel id "
           },
           "name": {
             "type": "string",
-            "example": "SMS"
+            "example": "SMS",
+            "description": "channel display name"
           },
           "price": {
             "type": "string",
-            "example": 50
+            "example": 50,
+            "description": "channel price to brodcast, 0 means free"
           }
         }
       },
