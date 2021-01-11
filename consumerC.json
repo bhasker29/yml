@@ -2042,19 +2042,22 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": 1
+            "example": 1,
+            "description": "broadcast message Template Id"
           },
           "title": {
             "type": "string",
-            "example": "New Product"
+            "example": "New Product",
+            "description": "Title of broadcast message Template"
           },
           "bkgImg": {
             "type": "string",
             "description": "Link of Image as background if null or empty show default image",
             "example": "http://tets/image.com"
           },
-          "message": {
+          "msgTemplate": {
             "type": "string",
+            "description": "broadcast message Template",
             "example": "We have added new Product <productName> in our shop <address>"
           },
           "fields": {

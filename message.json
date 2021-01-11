@@ -763,7 +763,7 @@
           "id": {
             "type": "string",
             "example": 123,
-            "description": "broadcast message Config Id"
+            "description": "broadcast message Template Id"
           },
           "broadcastId": {
             "type": "string",
@@ -777,7 +777,7 @@
           },
           "msgTemplate": {
             "type": "string",
-            "description": "broadcast message Config Id",
+            "description": "broadcast message Template",
             "example": "appki dukan pe <productName> hai on <address>"
           },
           "bkgImg": {
@@ -809,12 +809,12 @@
           "id": {
             "type": "string",
             "example": 1,
-            "description": "broadcast message Config Id"
+            "description": "broadcast message Template Id"
           },
           "broadcastId": {
             "type": "string",
             "example": 12,
-            "description": " broadcast message id recieved in reponse of broadcast Message api. "
+            "description": " broadcast message id recieved in reponse of broadcast Message publish api. "
           },
           "startDate": {
             "type": "string",
@@ -824,7 +824,7 @@
           "endDate": {
             "type": "string",
             "format": "date",
-            "description": "End date selected by User for the config Id. Will be ignored incase of Edit."
+            "description": "End date selected by User for the message. Will be ignored incase of Edit."
           },
           "fields": {
             "type": "object",
