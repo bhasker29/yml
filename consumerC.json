@@ -1165,8 +1165,8 @@
       },
       "bcAgentId": {
         "in": "header",
-        "name": "bcAgentId",
-        "description": "bcAgentId",
+        "name": "clientId",
+        "description": "clientId",
         "required": false,
         "schema": {
           "type": "string"
@@ -1312,11 +1312,13 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "example": "9283"
+            "example": "9283",
+            "description": "error code to map exact failure."
           },
           "errorMsg": {
             "type": "string",
-            "example": "An error has occured while processing your request"
+            "example": "An error has occured while processing your request",
+            "description": "error code to map exact failure."
           }
         }
       },
@@ -2046,10 +2048,10 @@
             "type": "string",
             "example": "New Product"
           },
-          "back": {
-            "description": "background Img",
+          "bkgImg": {
             "type": "string",
-            "example": "http://test.com/test.jpg"
+            "description": "Link of Image as background if null or empty show default image",
+            "example": "http://tets/image.com"
           },
           "message": {
             "type": "string",
