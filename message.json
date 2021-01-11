@@ -799,7 +799,11 @@
             "type": "string",
             "example": 12
           },
-          "date": {
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
             "type": "string",
             "format": "date"
           },
