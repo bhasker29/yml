@@ -2064,10 +2064,20 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "example": "productName"
           },
           "displayVal": {
-            "type": "string"
+            "type": "string",
+            "example": "Your Product name?"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "date",
+              "number",
+              "string"
+            ]
           }
         }
       }
