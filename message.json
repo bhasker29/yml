@@ -760,25 +760,38 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": 123
+            "example": 123,
+            "description": "broadcast message Config Id"
           },
           "broadcastId": {
             "type": "string",
-            "example": 12
+            "example": 12,
+            "description": "broadcast message Id"
           },
           "msg": {
             "type": "string",
-            "format": "message",
-            "example": "appki dukan pe toster hai on balugunj chowk"
+            "example": "appki dukan pe toster hai on balugunj chowk",
+            "description": "broadcast message Display value"
           },
           "msgTemplate": {
             "type": "string",
-            "format": "message",
+            "description": "broadcast message Config Id",
             "example": "appki dukan pe <productName> hai on <address>"
           },
-          "date": {
+          "bkgImg": {
             "type": "string",
-            "format": "date"
+            "description": "Link of Image as background if null or empty show default image",
+            "example": "http://tets/image.com"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date when it start publishing."
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "description": "End date which is expiry date."
           },
           "fields": {
             "type": "object",
