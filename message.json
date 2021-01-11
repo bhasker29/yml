@@ -274,7 +274,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer"
+                  "$ref": "#/components/schemas/BoardcastMessageRes"
                 }
               }
             }
@@ -762,7 +762,7 @@
             "type": "string",
             "example": 123
           },
-          "castId": {
+          "broadcastId": {
             "type": "string",
             "example": 12
           },
@@ -793,25 +793,40 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": 1
+            "example": 1,
+            "description": "broadcast message Config Id"
           },
-          "castId": {
+          "broadcastId": {
             "type": "string",
-            "example": 12
+            "example": 12,
+            "description": "Optional value send in case user editing the broadcast message."
           },
           "startDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "Start date selected by User. Will be ignored incase of Edit."
           },
           "endDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "End date selected by User for the config Id. Will be ignored incase of Edit."
           },
           "fields": {
             "type": "object",
+            "description": "values map for each replacer keys in Broadcast Message",
             "additionalProperties": {
               "type": "string"
             }
+          }
+        }
+      },
+      "BoardcastMessageRes": {
+        "type": "object",
+        "properties": {
+          "broadcastId": {
+            "type": "string",
+            "example": 12,
+            "description": "Optional value send in case user editing the broadcast message."
           }
         }
       },
@@ -831,18 +846,22 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "AEPS"
+            "example": "AEPS",
+            "description": "Service id"
           },
           "displayName": {
             "type": "string",
-            "example": "AEPS customers"
+            "example": "AEPS customers",
+            "description": "Service Display Name"
           },
           "custCount": {
             "type": "integer",
-            "example": 240
+            "example": 240,
+            "description": "Customer count for particuliar service"
           },
           "userList": {
             "type": "array",
+            "description": "List if customer for paticuliar service",
             "items": {
               "$ref": "#/components/schemas/User"
             }
@@ -866,16 +885,19 @@
           "id": {
             "type": "integer",
             "format": "int64",
-            "example": 12344
+            "example": 12344,
+            "description": "Customer Id or Digital Id"
           },
           "name": {
             "type": "string",
+            "description": "Display name of Customer",
             "example": "Bhasker"
           },
           "mob": {
             "type": "integer",
             "format": "int64",
-            "example": 9999999999
+            "example": 9999999999,
+            "description": "Mobile Number of Customer"
           }
         }
       },
@@ -884,10 +906,12 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": 123
+            "example": 123,
+            "description": "broadcast message Config Id"
           },
           "channel": {
             "type": "array",
+            "description": "Channel user has selected",
             "items": {
               "type": "string",
               "example": [
@@ -907,6 +931,7 @@
         "type": "object",
         "properties": {
           "amount": {
+            "description": "Numeric Amount in rupees",
             "type": "number",
             "example": 210.12
           }
@@ -917,14 +942,17 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": 123
+            "example": 123,
+            "description": "broadcast message Config Id"
           },
           "broadcastId": {
             "type": "string",
-            "example": 1231
+            "example": 1231,
+            "description": "broadcast message id recieved in reponse of broadcast Message api."
           },
           "channel": {
             "type": "array",
+            "description": "Channel user has selected",
             "items": {
               "type": "string",
               "example": [
@@ -947,10 +975,12 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "AEPS"
+            "example": "AEPS",
+            "description": "Service Id selected"
           },
           "userId": {
             "type": "array",
+            "description": "All Customers selected ids , in case of ALL Customers are selected then send -1",
             "items": {
               "type": "integer",
               "example": [
