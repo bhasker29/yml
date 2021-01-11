@@ -1165,8 +1165,8 @@
       },
       "bcAgentId": {
         "in": "header",
-        "name": "clientId",
-        "description": "clientId",
+        "name": "bcAgentId",
+        "description": "bcAgentId",
         "required": false,
         "schema": {
           "type": "string"
