@@ -960,6 +960,9 @@
             "$ref": "#/components/parameters/geoCode"
           },
           {
+            "$ref": "#/components/parameters/bcAgentId"
+          },
+          {
             "in": "path",
             "name": "busnessType",
             "description": "busnessType default is default",
