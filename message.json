@@ -799,7 +799,7 @@
           "broadcastId": {
             "type": "string",
             "example": 12,
-            "description": "Optional value send in case user editing the broadcast message."
+            "description": " broadcast message id recieved in reponse of broadcast Message api. "
           },
           "startDate": {
             "type": "string",
