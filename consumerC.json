@@ -936,9 +936,9 @@
     "/broadcast/config/{busnessType}": {
       "get": {
         "tags": [
-          "brodcast"
+          "broadcast"
         ],
-        "summary": "gets config for brodcast messages",
+        "summary": "gets config for broadcast messages",
         "operationId": "getBroadcastConfig",
         "parameters": [
           {
@@ -2037,7 +2037,7 @@
           "price": {
             "type": "string",
             "example": 50,
-            "description": "channel price to brodcast, 0 means free"
+            "description": "channel price to broadcast, 0 means free"
           }
         }
       },
