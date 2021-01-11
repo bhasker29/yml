@@ -681,7 +681,7 @@
           "errorCode": {
             "type": "string",
             "example": "9283",
-            "description": "error code to map exart failure."
+            "description": "error code to map exact failure."
           },
           "errorMsg": {
             "type": "string",
