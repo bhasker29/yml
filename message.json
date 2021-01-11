@@ -680,11 +680,13 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "example": "9283"
+            "example": "9283",
+            "description": "error code to map exart failure."
           },
           "errorMsg": {
             "type": "string",
-            "example": "An error has occured while processing your request"
+            "example": "An error has occured while processing your request",
+            "description": "Message can be used as display message to user in case of error."
           }
         }
       },
@@ -936,7 +938,8 @@
           },
           "count": {
             "type": "integer",
-            "example": 120
+            "example": 120,
+            "description": "count customer"
           }
         }
       },
