@@ -482,6 +482,14 @@
             }
           },
           {
+            "name": "recordNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "name": "expiredFlag",
             "in": "path",
             "required": true,
@@ -575,6 +583,73 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CustCatRes"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
+    },
+    "/user/cust/cat/v": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "uder categories by service",
+        "operationId": "getUserForCatVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAcc"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "token": {
+                "$ref": "#/components/headers/token"
+              },
+              "r-token": {
+                "$ref": "#/components/headers/rToken"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Version"
                 }
               }
             }
@@ -796,10 +871,35 @@
             "description": "End date which is expiry date."
           },
           "fields": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fields"
             }
+          }
+        }
+      },
+      "Fields": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "productName"
+          },
+          "displayVal": {
+            "type": "string",
+            "example": "Your Product name?"
+          },
+          "val": {
+            "type": "string",
+            "example": "Your Product name?"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "date",
+              "number",
+              "string"
+            ]
           }
         }
       },
@@ -853,6 +953,10 @@
             "items": {
               "$ref": "#/components/schemas/CustCat"
             }
+          },
+          "version": {
+            "type": "string",
+            "example": 1213344
           }
         }
       },
@@ -916,6 +1020,15 @@
           }
         }
       },
+      "Version": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string",
+            "example": 1234
+          }
+        }
+      },
       "PricingRequest": {
         "type": "object",
         "properties": {
@@ -971,38 +1084,22 @@
             "description": "Channel user has selected",
             "items": {
               "type": "string",
-              "example": [
-                "CUST_APP",
-                "SMS",
-                "WHATSAPP"
-              ]
+              "example": "CUST_APP,SMS, WHATSAPP"
             }
           },
           "service": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Service"
+              "type": "string",
+              "example": "DMT,AEPS"
             }
-          }
-        }
-      },
-      "Service": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": "AEPS",
-            "description": "Service Id selected"
           },
           "userId": {
             "type": "array",
             "description": "All Customers selected ids , in case of ALL Customers are selected then send -1",
             "items": {
               "type": "integer",
-              "example": [
-                -1,
-                1221
-              ]
+              "example": "-1,1221"
             }
           }
         }

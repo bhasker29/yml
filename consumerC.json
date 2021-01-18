@@ -1000,6 +1000,74 @@
           }
         }
       }
+    },
+    "/broadcast/config/{busnessType}/v": {
+      "get": {
+        "tags": [
+          "broadcast"
+        ],
+        "summary": "gets config for broadcast messages",
+        "operationId": "getBroadcastConfigVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/uniqueId"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/rToken"
+          },
+          {
+            "$ref": "#/components/parameters/lang"
+          },
+          {
+            "$ref": "#/components/parameters/geoAccuracy"
+          },
+          {
+            "$ref": "#/components/parameters/geoCode"
+          },
+          {
+            "$ref": "#/components/parameters/bcAgentId"
+          },
+          {
+            "in": "path",
+            "name": "busnessType",
+            "description": "busnessType default is default",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Version"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "403": {
+            "$ref": "#/components/responses/auth_error"
+          },
+          "405": {
+            "$ref": "#/components/responses/error_405_with_headers"
+          },
+          "415": {
+            "$ref": "#/components/responses/error_415_with_headers"
+          },
+          "422": {
+            "$ref": "#/components/responses/error_422_with_headers"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1363,6 +1431,15 @@
           "subtitle": {
             "type": "string",
             "example": "transaction details and many other updates"
+          }
+        }
+      },
+      "Version": {
+        "type": "object",
+        "properties": {
+          "v": {
+            "type": "string",
+            "example": 1234
           }
         }
       },
