@@ -610,7 +610,7 @@
         "tags": [
           "user"
         ],
-        "summary": "uder categories by service",
+        "summary": "user categories by service data version",
         "operationId": "getUserForCatVersion",
         "parameters": [
           {
@@ -1025,6 +1025,7 @@
         "properties": {
           "v": {
             "type": "string",
+            "description": "data version",
             "example": 1234
           }
         }
