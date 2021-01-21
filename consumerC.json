@@ -1092,7 +1092,7 @@
         "in": "header",
         "name": "r-token",
         "description": "rToken",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
