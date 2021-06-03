@@ -1,0 +1,435 @@
+openapi: 3.0.0
+info:
+  title: Dynamic Dashboard
+  description: 'Dynamic Dashboard'
+  termsOfService: ''
+  contact:
+    email: solutions@spicemoney.com
+  license:
+    name: ""
+    url: ''
+  version: 1.0.0.4
+servers:
+# Added by API Auto Mocking Plugin
+
+- description: SwaggerHub API Auto Mocking
+  url: ""
+
+paths:
+
+#-----------------------------------------------------------
+#           API Spec-Lead SignUp (Milestone 1)
+#
+#
+#--------------------------------------------------------------
+
+
+   /content/{requester}:
+    get:
+      tags:
+      - Dynamic Dashboard
+      summary: gets Static content of Dashboard
+      description: its a versioned content
+      operationId: getDashboardContent
+      parameters:
+        - in: query
+          name: v
+          required: true
+          description: version
+          schema:
+            type: string
+        - $ref: '#/components/parameters/requester'
+        - $ref: '#/components/parameters/lang'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref : '#/components/schemas/DashboardContentResp'
+        "400":
+          description: Business Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Business Exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "415":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+   /dashbord/ordering/static:
+    get:
+      tags:
+      - Dynamic Dashboard
+      summary: get ordering of dashbord
+      description: its a versioned content
+      operationId: getScreenOrder
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/rToken'
+      responses:
+        "200":
+          description: successful operation
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardOrder'
+        "400":
+          description: Business Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Business Exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "415":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  headers:
+    rToken:
+      required: false
+      schema:
+        type: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+    token:
+      required: true
+      schema:
+        type: string
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        
+        
+  parameters:
+    lang:
+      in: header
+      name: lang
+      description: lang
+      required: false
+      schema:
+        type: string
+    rToken:
+      in: header
+      name: r-token
+      description: rToken
+      required: false
+      schema:
+        type: string
+    token:
+      in: header
+      name: token
+      required: false
+      schema:
+        type: string
+    requester:
+      in: path
+      name: requester
+      description: requester id for content
+      required: true
+      schema:
+        type: string
+      example: 'dashboard'
+    dataState:
+      in: path
+      name: dataState
+      description: Data state Pre of Post 
+      required: true
+      schema:
+        type: string
+      example: 'prefilled'
+    mode:
+      in: path
+      name: mode
+      description: mode id for OTP API 
+      required: true
+      schema:
+        type: string
+      example: 'APP'
+    pinCode:
+      in: query
+      name: pinCode
+      description: Get Data based on PinCodes 
+      required: true
+      schema:
+        type: number
+      example: '173234'
+    sCode:
+      in: query
+      name: sCode
+      description: State Code 
+      required: true
+      schema:
+        type: string
+      example: 'HP'
+    mobileNumber:
+      in: path
+      name: mobileNumber
+      description: mobileNumber
+      required: true
+      schema:
+        type: string
+      example: '8699770989'
+    aDate:
+      in: query
+      name: aDate
+      description: Attendance Date 
+      required: true
+      schema:
+        type: string
+        format: date
+    recordNo:
+      in: query
+      name: recordNo
+      description: Record No 
+      required: true
+      schema:
+        type: number
+      example: 0
+    month:
+      in: path
+      name: month
+      description: month to be selected 
+      required: true
+      schema:
+        type: string
+      example: 'MARCH'    
+#----------------------------------------------------------- 
+#                 Common APP Headers
+#------------------------------------------------------------
+  
+  
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: '9283'
+          description: "error code to map exact failure."
+        errorMsg:
+          type: string  
+          example: 'An error has occured while processing your request'
+          description: "error code to map exact failure."
+          
+    DashboardContentVal:
+      type: object
+      properties:
+        act: 
+          type: string
+          description: can be WV for webview, B for browser, S for service  
+          example: WV
+        actParam:
+          type: array
+          items:
+            type: string
+            example: http://test.test.com/test.html
+            description: Parameters of action params 
+        img: 
+          example: http://test.test.com/test.png
+          type: string
+          description: url of the icon 
+        i:
+          type: string
+          description: Information for I 
+          example: Its  a DMT service
+        sName:
+          type: string
+          description: title 
+          example: DMT
+        tseCol:
+          type: string
+          description: teaser colour 
+          example: GREEN
+        sid:
+          type: string
+          description: service ID 
+          example: DMT        
+        msg:
+          type: string
+          description: msg for display tile 
+          example: Its  a DMT service    
+    KeyVal: 
+      type: object
+      properties:
+        gid:
+          type: string
+          example: "othSer"
+          description: "Group Id key reference"
+        gName:
+          type: string
+          example: "Other Services"
+          description: "Group name"
+    DashboardContentResp: 
+      type: object
+      properties:
+        v:
+          type: string
+          example: 12313
+          description: "Version"
+        grp:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyVal'
+        service:
+           type: array
+           items:
+            $ref: '#/components/schemas/DashboardContentVal'
+    DashboardOrder:
+      type: object
+      properties:
+        v: 
+          type: string
+          example: 12313
+          description: "Version"
+        grp:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderTile'
+              
+    OrderTile:
+      type: object
+      properties:
+        gid: 
+          type: string
+          example: othSer
+          description: group identifier
+        val:
+          type: array
+          items:
+            type: object
+            properties:
+              sid:
+                type: string 
+                example: DMT
+                description: Service identifier
+              acs:
+                type: string 
+                example: Y
+                description: Flag of service for accessibiliy
+          
+
+
+             
+    DisplayMessage: 
+      type: object
+      properties:
+        displayMsg:
+          type: string
+          example: 'Your action is Successfull'
+
+  responses:
+    error_400:
+          description: Business Error
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_400_with_headers:
+          description: Validation exception
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_405_with_headers:
+          description: Business Exception
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_422_with_headers:
+          description: Business Exception
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_422:
+          description: Unprocessable Entity
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_415_with_headers:
+          description: Unsupported Media Type 
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    error_405:
+          description: Business Exception
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    
+    auth_error:
+          description: Auth error
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+    200_with_displaymsg:
+          description: successful operation
+          headers:
+            token:
+              $ref: '#/components/headers/token'
+            r-token:
+              $ref: '#/components/headers/rToken'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisplayMessage'
